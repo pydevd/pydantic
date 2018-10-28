@@ -51,8 +51,8 @@ class Schema:
 class Field:
     __slots__ = (
         'type_', 'sub_fields', 'key_field', 'validators', 'whole_pre_validators', 'whole_post_validators',
-        'default', 'required', 'model_config', 'name', 'alias', '_schema', 'validate_always', 'allow_none', 'shape',
-        'class_validators', 'parse_json'
+        'default', 'required', 'model_config', 'name', 'alias', 'has_alias', '_schema', 'validate_always',
+        'allow_none', 'shape', 'class_validators', 'parse_json'
     )
 
     def __init__(
@@ -68,6 +68,7 @@ class Field:
             schema: Schema=None):
 
         self.name: str = name
+        self.has_alias: bool = bool(alias)
         self.alias: str = alias or name
         self.type_: type = type_
         self.class_validators = class_validators or []
